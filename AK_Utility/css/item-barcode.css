@@ -1,0 +1,312 @@
+/* ============================================
+   ITEM BARCODE - SPECIFIC STYLES
+   ============================================ */
+
+.print-settings-bar {
+    background: var(--ak-gray-100);
+    border: 1px solid var(--ak-gray-200);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+}
+
+.print-setting-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.print-setting-label { 
+    color: var(--ak-text-light); 
+}
+
+.print-setting-value { 
+    font-weight: 600; 
+    color: var(--ak-maroon); 
+}
+
+/* Mode Toggle */
+.mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding: 14px;
+    background: var(--ak-gray-100);
+    border-radius: 10px;
+}
+
+.mode-toggle label {
+    font-weight: 500;
+    color: var(--ak-text);
+    font-size: 14px;
+}
+
+.toggle-buttons {
+    display: flex;
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--ak-maroon);
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    border: none;
+    background: var(--ak-white);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ak-maroon);
+    transition: all var(--transition-fast);
+}
+
+.toggle-btn.active {
+    background: var(--ak-maroon);
+    color: var(--ak-white);
+}
+
+.toggle-btn:hover:not(.active) { 
+    background: var(--ak-cream-light); 
+}
+
+/* Form Group Header */
+.form-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.form-group-header label {
+    font-weight: 500;
+    color: var(--ak-maroon);
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.upload-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid var(--ak-maroon);
+}
+
+.btn-small-outline {
+    background: var(--ak-white);
+    color: var(--ak-maroon);
+}
+
+.btn-small-outline:hover { 
+    background: var(--ak-cream-light); 
+}
+
+.btn-small-filled {
+    background: var(--ak-maroon);
+    color: var(--ak-white);
+    border-color: var(--ak-maroon);
+}
+
+.btn-small-filled:hover { 
+    background: var(--ak-maroon-dark); 
+}
+
+.help-text {
+    font-size: 12px;
+    color: var(--ak-text-light);
+    margin-top: 6px;
+}
+
+/* CSV Preview */
+.csv-preview {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--ak-gray-100);
+    border: 1px solid var(--ak-gray-200);
+    border-radius: 10px;
+    display: none;
+}
+
+.csv-preview.show { 
+    display: block; 
+}
+
+.csv-preview h4 {
+    font-size: 14px;
+    color: var(--ak-maroon);
+    margin-bottom: 12px;
+}
+
+.csv-preview-content {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--ak-text);
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.csv-preview-row {
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--ak-gray-200);
+}
+
+.csv-preview-row:last-child { 
+    border-bottom: none; 
+}
+
+.csv-preview-summary {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ak-gray-300);
+    font-weight: 600;
+    color: var(--ak-maroon);
+    font-size: 13px;
+}
+
+.csv-preview-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+/* Quantity Input Group */
+.qty-input-group { 
+    display: none; 
+}
+
+.qty-input-group.show { 
+    display: block; 
+}
+
+/* Preview Area */
+.preview-area {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--ak-gray-100);
+    border: 2px dashed var(--ak-gray-300);
+    border-radius: 12px;
+    text-align: center;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-area h4 {
+    color: var(--ak-text-light);
+    margin-bottom: 12px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.preview-label {
+    background: var(--ak-white);
+    padding: 16px;
+    border: 1px solid var(--ak-gray-300);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Print Status */
+.print-status {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.print-status.show { 
+    display: flex; 
+}
+
+.print-status.processing {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+}
+
+.print-status.success {
+    background: #d4edda;
+    border: 1px solid #28a745;
+    color: #155724;
+}
+
+.print-status.error {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
+}
+
+.print-status-text {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Print Settings Section */
+.print-settings-section {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ak-gray-200);
+}
+
+.print-settings-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.print-settings-section h4 {
+    color: var(--ak-maroon);
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.print-settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.print-settings-row label {
+    font-size: 14px;
+    color: var(--ak-text);
+}
+
+.print-settings-row select {
+    padding: 8px 12px;
+    border: 1px solid var(--ak-gray-300);
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 160px;
+}
+
+.print-settings-row select:focus {
+    outline: none;
+    border-color: var(--ak-maroon);
+}
+
+/* Hidden Input */
+.hidden-input { 
+    display: none; 
+}

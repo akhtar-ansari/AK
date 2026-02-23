@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>AK Utility</title>
+    
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/core.css">
+    
+    <!-- App Styles (loaded dynamically based on active app) -->
+    <link rel="stylesheet" href="css/box-scanner.css" id="boxScannerCSS" disabled>
+    <link rel="stylesheet" href="css/item-barcode.css" id="itemBarcodeCSS" disabled>
+    <link rel="stylesheet" href="css/box-code.css" id="boxCodeCSS" disabled>
+    <link rel="stylesheet" href="css/photo-capture.css" id="photoCaptureCSS" disabled>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo">AK</div>
+        <h1 class="header-title">AK Utility</h1>
+        <div class="header-store" id="headerStore"></div>
+        <div class="online-status online" id="onlineStatus">Online</div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+        
+        <!-- SCREEN: Store Login -->
+        <div id="loginScreen" class="screen active">
+            <div class="card">
+                <h2 class="card-title">🏪 Store Login</h2>
+                <p class="card-subtitle">Enter your Store ID to access utilities</p>
+                
+                <div class="form-group">
+                    <label for="storeIdInput">Store ID</label>
+                    <input type="text" id="storeIdInput" class="form-input" placeholder="e.g., BLA1140" autocomplete="off" autocapitalize="characters">
+                </div>
+                
+                <div class="error-msg" id="loginError"></div>
+                
+                <button class="btn btn-primary btn-block" id="lookupStoreBtn">
+                    <span id="lookupBtnText">Search Your Store</span>
+                </button>
+                
+                <div id="storeConfirmBox" class="store-info-box" style="display: none;">
+                    <h3>✓ Store Found</h3>
+                    <div class="detail"><strong>Store ID:</strong> <span id="confirmStoreId"></span></div>
+                    <div class="detail"><strong>Store Name:</strong> <span id="confirmStoreName"></span></div>
+                    <div class="detail"><strong>Location:</strong> <span id="confirmLocation"></span></div>
+                    <p style="margin-top: 16px; font-weight: 500; color: var(--ak-text);">Is this your store?</p>
+                    <div class="btn-group" style="margin-top: 12px;">
+                        <button class="btn btn-primary" id="confirmYesBtn">Yes, Continue</button>
+                        <button class="btn btn-secondary" id="confirmNoBtn">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN: Home -->
+        <div id="homeScreen" class="screen">
+            <div class="home-header">
+                <h2>Welcome!</h2>
+                <p>Select a utility to get started</p>
+            </div>
+            
+            <div class="session-banner" id="sessionBanner">
+                <span class="session-banner-icon">📦</span>
+                <div class="session-banner-text">
+                    <strong>Box Scanner Session Active</strong>
+                    <span id="sessionBannerInfo">Complete or reset to switch apps</span>
+                </div>
+                <button class="session-banner-btn" id="goToSessionBtn">Go to Scanner</button>
+            </div>
+            
+            <div class="app-grid" id="appGrid"></div>
+        </div>
+
+        <!-- SCREEN: App Container -->
+        <div id="appScreen" class="screen">
+            <div class="app-header">
+                <button class="app-back-btn" id="appBackBtn" title="Back to Home">←</button>
+                <div class="app-title">
+                    <h2 id="appTitleText">App Name</h2>
+                    <p id="appSubtitleText">App description</p>
+                </div>
+            </div>
+            
+            <!-- App modules will be loaded here dynamically -->
+            <div id="appModuleContainer"></div>
+        </div>
+
+    </main>
+
+    <!-- Hidden Print Container -->
+    <div id="printContainer"></div>
+
+    <!-- Core JavaScript -->
+    <script src="js/core.js"></script>
+    
+    <!-- App Scripts (loaded on demand) -->
+    <script src="js/box-scanner.js" defer></script>
+    <script src="js/item-barcode.js" defer></script>
+    <script src="js/box-code.js" defer></script>
+    <script src="js/photo-capture.js" defer></script>
+</body>
+</html>

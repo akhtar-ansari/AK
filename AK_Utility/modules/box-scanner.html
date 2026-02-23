@@ -1,0 +1,180 @@
+<!-- Session Setup Screen -->
+<div id="scannerSessionScreen" class="scanner-screen active">
+    <div class="card">
+        <h2 class="card-title">📋 Session Setup</h2>
+        <p class="card-subtitle">Enter session details to start scanning</p>
+        
+        <div class="lang-toggle">
+            <button class="lang-btn active" id="langEnBtn" data-lang="en">EN</button>
+            <button class="lang-btn" id="langArBtn" data-lang="ar">عربي</button>
+        </div>
+        
+        <div class="form-group">
+            <label id="lblStaffName">Your Name</label>
+            <input type="text" id="scannerStaffInput" class="form-input" placeholder="Enter your name...">
+        </div>
+        
+        <div class="form-group">
+            <label id="lblPurpose">Purpose</label>
+            <select id="scannerPurposeSelect" class="form-select">
+                <option value="">-- Select purpose --</option>
+                <option value="Store to Store">Store to Store</option>
+                <option value="Store to DC">Store to DC</option>
+                <option value="DC Scan">DC Scan</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label id="lblRemark">Remark</label>
+            <input type="text" id="scannerRemarkInput" class="form-input" placeholder="e.g., Fall Winter 2023 stocks">
+        </div>
+        
+        <button class="btn btn-primary btn-block" id="startSessionBtn">
+            <span id="lblStartSession">Start Session</span>
+        </button>
+    </div>
+</div>
+
+<!-- Scanning Screen -->
+<div id="scannerScanScreen" class="scanner-screen">
+    <div class="info-bar">
+        <span id="lblStore">Store:</span> <span id="dispScannerStore">-</span> | 
+        <span id="lblStaff">Staff:</span> <span id="dispScannerStaff">-</span>
+    </div>
+    
+    <div class="stats-row">
+        <div class="stat-box">
+            <div class="stat-label" id="lblTotal">Total</div>
+            <div class="stat-number" id="statTotal">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label" id="lblBoxQty">Box Qty</div>
+            <div class="stat-number" id="statBoxQty">0</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label" id="lblBoxes">Boxes</div>
+            <div class="stat-number" id="statBoxes">0</div>
+        </div>
+    </div>
+    
+    <div class="scan-card">
+        <button class="close-box-btn" id="closeBoxBtn">
+            ✕ <span id="lblCloseBox">Close Box</span> <span id="closeBoxBtnId"></span>
+        </button>
+        
+        <div class="form-group" id="boxIdGroup">
+            <label id="lblBoxId">Box ID</label>
+            <input type="text" id="boxIdInput" class="form-input" placeholder="Scan box ID...">
+        </div>
+        
+        <div class="form-group hidden" id="barcodeGroup">
+            <label id="lblBarcode">Barcode</label>
+            <input type="text" id="barcodeInput" class="form-input" placeholder="Scan barcode...">
+        </div>
+    </div>
+    
+    <div class="scans-table-container">
+        <div class="scans-table-header">
+            <span class="scans-table-title" id="lblRecentScans">Last 5 Scans</span>
+            <span class="sync-badge synced" id="syncBadge">✓</span>
+        </div>
+        <table class="scans-table">
+            <thead>
+                <tr>
+                    <th id="thBarcode">Barcode</th>
+                    <th id="thTime">Time</th>
+                    <th id="thAction">Del</th>
+                </tr>
+            </thead>
+            <tbody id="scansTableBody"></tbody>
+        </table>
+    </div>
+    
+    <div class="action-row">
+        <button class="btn btn-primary" id="downloadBtn">📥 <span id="lblDownload">Download</span></button>
+        <button class="btn btn-secondary" id="resetSessionBtn" style="background: var(--ak-danger); color: white; border: none;">🔄 <span id="lblReset">Reset</span></button>
+    </div>
+    
+    <div class="settings-link">
+        <a href="#" id="openScannerSettingsBtn">⚙️ <span id="lblSettings">Settings</span></a>
+    </div>
+</div>
+
+<!-- Close Box Modal -->
+<div class="modal-overlay" id="closeBoxModal">
+    <div class="modal">
+        <h3 class="modal-title"><span id="lblCloseBoxTitle">Close Box</span> <span id="modalBoxId"></span></h3>
+        <div class="modal-body">
+            <p id="lblQtyItems">Quantity:</p>
+            <div class="modal-qty"><span id="modalBoxQty">0</span> <span id="lblItems">items</span></div>
+            <div id="closeBoxStep1">
+                <p id="lblAreYouSure">Are you sure you want to close this box?</p>
+            </div>
+            <div id="closeBoxStep2" style="display: none;">
+                <p id="lblScanToConfirm">Scan box ID to confirm</p>
+                <input type="text" id="closeBoxScanInput" class="modal-input" placeholder="Scan box ID...">
+            </div>
+        </div>
+        <div class="modal-buttons" id="closeBoxButtons1">
+            <button class="btn btn-primary" id="closeBoxYesBtn">Yes</button>
+            <button class="btn btn-secondary" id="closeBoxCancelBtn">Cancel</button>
+        </div>
+        <div class="modal-buttons" id="closeBoxButtons2" style="display: none;">
+            <button class="btn btn-secondary" id="closeBoxBackBtn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Reset Modal -->
+<div class="modal-overlay" id="resetModal">
+    <div class="modal">
+        <h3 class="modal-title" id="lblResetTitle">Reset Session?</h3>
+        <div class="modal-body">
+            <p id="lblResetMsg">This will download your data and start a new session.</p>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn btn-primary" id="resetYesBtn">Yes</button>
+            <button class="btn btn-secondary" id="resetNoBtn">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal">
+        <h3 class="modal-title" id="lblDeleteTitle">Delete Scan?</h3>
+        <div class="modal-body">
+            <p id="lblDeleteMsg">Delete this scan?</p>
+            <p style="font-weight: 600; color: var(--ak-maroon);" id="deleteInfo"></p>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn btn-secondary" style="background: var(--ak-danger); color: white; border: none;" id="deleteYesBtn">Delete</button>
+            <button class="btn btn-secondary" id="deleteNoBtn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="scannerSettingsModal">
+    <div class="modal">
+        <h3 class="modal-title">⚙️ <span id="lblSettingsTitle">Settings</span></h3>
+        <div class="modal-body" style="text-align: left;">
+            <div class="settings-section">
+                <h4 id="lblLanguage">Language</h4>
+                <div class="lang-toggle" style="justify-content: flex-start;">
+                    <button class="lang-btn active" id="settingsLangEnBtn" data-lang="en">EN</button>
+                    <button class="lang-btn" id="settingsLangArBtn" data-lang="ar">عربي</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h4 id="lblAdminReset">Admin Reset</h4>
+                <p style="font-size: 13px; color: var(--ak-text-light); margin-bottom: 12px;" id="lblAdminResetDesc">Reset store and all data</p>
+                <input type="password" id="adminCodeInput" class="form-input" placeholder="Enter admin code" style="margin-bottom: 10px;">
+                <button class="btn btn-secondary" style="background: var(--ak-danger); color: white; border: none; width: 100%;" id="adminResetBtn">🔓 <span id="lblExecuteReset">Execute Reset</span></button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn btn-primary btn-block" id="closeSettingsBtn">Close</button>
+        </div>
+    </div>
+</div>
